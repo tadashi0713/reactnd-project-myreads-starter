@@ -1,3 +1,6 @@
 node_modules
 yarn.lock
 .DS_Store
+
+.idea/
+reactnd-project-myreads-starter.iml
