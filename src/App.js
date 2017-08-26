@@ -51,6 +51,7 @@ class BooksApp extends React.Component {
           </div>
         ) : (
           <ListBooks
+            books={this.state.books}
             onShowSearchPage={this.showSearchPage}
           />
         )}
