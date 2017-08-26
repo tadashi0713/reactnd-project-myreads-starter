@@ -4,7 +4,7 @@ import Book from './Book'
 class ListBooks extends Component {
 
   render() {
-    const { books, onShowSearchPage } = this.props;
+    const { books, onShowSearchPage, onUpdateBook } = this.props;
 
     const currentlyReadingBooks = books.filter((book) => {
       return book.shelf === 'currentlyReading'
@@ -30,7 +30,12 @@ class ListBooks extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {currentlyReadingBooks.map((book) => (
-                    <Book book={book}/>
+                    <Book
+                      book={book}
+                      onUpdateBook={(book, shelf) => {
+                        onUpdateBook(book, shelf)
+                      }}
+                    />
                   ))}
                 </ol>
               </div>

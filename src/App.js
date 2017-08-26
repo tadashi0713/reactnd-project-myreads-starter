@@ -13,7 +13,7 @@ class BooksApp extends React.Component {
      */
     showSearchPage: true,
     books: []
-  }
+  };
 
   showSearchPage() {
     this.setState({ showSearchPage: true })
@@ -25,7 +25,13 @@ class BooksApp extends React.Component {
     })
   }
 
-
+  updateBook(book, shelf) {
+    BooksAPI.update(book, shelf).then(book => {
+      this.setState(state => ({
+        books: state.books.concat([ book ])
+      }))
+    })
+  }
 
   render() {
     return (
@@ -55,6 +61,9 @@ class BooksApp extends React.Component {
           <ListBooks
             books={this.state.books}
             onShowSearchPage={this.showSearchPage}
+            onUpdateBook={(book, shelf) => {
+              this.updateBook(book, shelf)
+            }}
           />
         )}
       </div>
