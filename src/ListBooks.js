@@ -5,12 +5,11 @@ import Book from './Book'
 class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onShowSearchPage: PropTypes.func.isRequired,
     onUpdateBook: PropTypes.func.isRequired
   };
 
   render() {
-    const { books, onShowSearchPage, onUpdateBook } = this.props;
+    const { books, onUpdateBook } = this.props;
 
     const currentlyReadingBooks = books.filter((book) => {
       return book.shelf === 'currentlyReading'
@@ -64,7 +63,7 @@ class ListBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => onShowSearchPage}>Add a book</a>
+          <a>Add a book</a>
         </div>
       </div>
     )
