@@ -2,7 +2,22 @@ import React, { Component } from 'react'
 import Book from './Book'
 
 class ListBooks extends Component {
+
   render() {
+    const { books, onShowSearchPage } = this.props;
+
+    const currentlyReadingBooks = books.filter((book) => {
+      return book.shelf === 'currentlyReading'
+    });
+
+    const wantToReadBooks = books.filter((book) => {
+      return book.shelf === 'wantToRead'
+    });
+
+    const readBooks = books.filter((book) => {
+      return book.shelf === 'read'
+    });
+
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -14,7 +29,7 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {this.props.books.map((book) => (
+                  {currentlyReadingBooks.map((book) => (
                     <Book book={book}/>
                   ))}
                 </ol>
@@ -24,7 +39,7 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {this.props.books.map((book) => (
+                  {wantToReadBooks.map((book) => (
                     <Book book={book}/>
                   ))}
                 </ol>
@@ -34,7 +49,7 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {this.props.books.map((book) => (
+                  {readBooks.map((book) => (
                     <Book book={book}/>
                   ))}
                 </ol>
@@ -43,7 +58,7 @@ class ListBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => this.props.onShowSearchPage}>Add a book</a>
+          <a onClick={() => onShowSearchPage}>Add a book</a>
         </div>
       </div>
     )
