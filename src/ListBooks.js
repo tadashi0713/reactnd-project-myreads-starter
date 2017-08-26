@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 class ListBooks extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    onShowSearchPage: PropTypes.func.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
+  };
 
   render() {
     const { books, onShowSearchPage, onUpdateBook } = this.props;
@@ -30,12 +36,7 @@ class ListBooks extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {currentlyReadingBooks.map((book) => (
-                    <Book
-                      book={book}
-                      onUpdateBook={(book, shelf) => {
-                        onUpdateBook(book, shelf)
-                      }}
-                    />
+                    <Book book={book}/>
                   ))}
                 </ol>
               </div>
