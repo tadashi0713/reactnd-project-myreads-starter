@@ -14,13 +14,13 @@ class ListBooks extends Component {
     })
   }
 
-  updateBook(book, shelf) {
+  updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf).then(book => {
       this.setState(state => ({
         books: state.books.concat([ book ])
       }))
     })
-  }
+  };
 
   render() {
     const { books } = this.state;
@@ -49,7 +49,11 @@ class ListBooks extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {currentlyReadingBooks.map((book) => (
-                    <Book book={book} key={book.title}/>
+                    <Book
+                      book={book}
+                      key={book.title}
+                      onUpdateBook={this.updateBook}
+                    />
                   ))}
                 </ol>
               </div>
@@ -59,7 +63,11 @@ class ListBooks extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {wantToReadBooks.map((book) => (
-                    <Book book={book} key={book.title}/>
+                    <Book
+                      book={book}
+                      key={book.title}
+                      onUpdateBook={this.updateBook}
+                    />
                   ))}
                 </ol>
               </div>
@@ -69,7 +77,11 @@ class ListBooks extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
                   {readBooks.map((book) => (
-                    <Book book={book} key={book.title}/>
+                    <Book
+                      book={book}
+                      key={book.title}
+                      onUpdateBook={this.updateBook}
+                    />
                   ))}
                 </ol>
               </div>
