@@ -7,7 +7,7 @@ class SearchBooks extends Component {
   state = {
     query: '',
     searchedBooks: []
-  };
+  }
 
   updateQuery = (query) => {
     this.setState({ query })
@@ -17,7 +17,7 @@ class SearchBooks extends Component {
         this.setState({ searchedBooks: results })
       })
     }
-  };
+  }
 
   render() {
     const { query, searchedBooks } = this.state;

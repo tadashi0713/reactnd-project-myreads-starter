@@ -20,7 +20,7 @@ class ListBooks extends Component {
         books: state.books.concat([ book ])
       }))
     })
-  };
+  }
 
   render() {
     const { books } = this.state;
@@ -51,7 +51,7 @@ class ListBooks extends Component {
                   {currentlyReadingBooks.map((book) => (
                     <Book
                       book={book}
-                      key={book.title}
+                      key={book.id}
                       onUpdateBook={this.updateBook}
                     />
                   ))}
@@ -65,7 +65,7 @@ class ListBooks extends Component {
                   {wantToReadBooks.map((book) => (
                     <Book
                       book={book}
-                      key={book.title}
+                      key={book.id}
                       onUpdateBook={this.updateBook}
                     />
                   ))}
@@ -79,7 +79,7 @@ class ListBooks extends Component {
                   {readBooks.map((book) => (
                     <Book
                       book={book}
-                      key={book.title}
+                      key={book.id}
                       onUpdateBook={this.updateBook}
                     />
                   ))}
