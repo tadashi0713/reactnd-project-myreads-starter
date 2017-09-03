@@ -15,10 +15,10 @@ class ListBooks extends Component {
   }
 
   updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(book => {
-      this.setState(state => ({
-        books: state.books.concat([ book ])
-      }))
+    BooksAPI.update(book, shelf).then(() => {
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books })
+      })
     })
   }
 
