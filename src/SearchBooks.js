@@ -10,7 +10,7 @@ class SearchBooks extends Component {
   };
 
   updateQuery = (query) => {
-    this.setState({ query });
+    this.setState({ query })
     if (query !== '') {
       BooksAPI.search(query, 20).then((results) => {
         if (typeof results === 'undefined' || results.error) return;

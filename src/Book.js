@@ -8,7 +8,7 @@ class Book extends Component {
   };
 
   render() {
-    const { book, onUpdateBook } = this.props;
+    const { book, onUpdateBook } = this.props
 
     return (
       <li>

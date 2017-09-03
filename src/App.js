@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
 import ListBooks from './ListBooks'
-import SearchBooks from './SearchBooks';
+import SearchBooks from './SearchBooks'
 
 class BooksApp extends React.Component {
   render() {
