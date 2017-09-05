@@ -20,9 +20,7 @@ class SearchBooks extends Component {
   }
 
   updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(() => {
-
-    })
+    BooksAPI.update(book, shelf)
   }
 
   render() {
