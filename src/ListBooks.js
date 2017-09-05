@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from  'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import Book from './Book'
+import BookShelf from './BookShelf'
 
 class ListBooks extends Component {
   state = {
@@ -44,48 +44,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Currently Reading</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {currentlyReadingBooks.map((book) => (
-                    <Book
-                      book={book}
-                      key={book.id}
-                      onUpdateBook={this.updateBook}
-                    />
-                  ))}
-                </ol>
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Want to Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {wantToReadBooks.map((book) => (
-                    <Book
-                      book={book}
-                      key={book.id}
-                      onUpdateBook={this.updateBook}
-                    />
-                  ))}
-                </ol>
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {readBooks.map((book) => (
-                    <Book
-                      book={book}
-                      key={book.id}
-                      onUpdateBook={this.updateBook}
-                    />
-                  ))}
-                </ol>
-              </div>
-            </div>
+            <BookShelf title='Currently Reading' books={currentlyReadingBooks} onUpdateBook={this.updateBook}/>
+            <BookShelf title='Want to Read' books={wantToReadBooks} onUpdateBook={this.updateBook}/>
+            <BookShelf title='Read' books={readBooks} onUpdateBook={this.updateBook}/>
           </div>
         </div>
         <div className="open-search">
