@@ -4,12 +4,6 @@ import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
 class SearchBooks extends Component {
-  static propTypes = {
-    history: React.PropTypes.shape({
-      push: React.PropTypes.func.isRequired,
-    }).isRequired
-  }
-
   state = {
     query: '',
     searchedBooks: []
@@ -27,7 +21,7 @@ class SearchBooks extends Component {
 
   updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
-      this.props.history.push('/')
+
     })
   }
 
