@@ -6,15 +6,17 @@ import SearchBooks from './SearchBooks'
 
 class BooksApp extends React.Component {
   state = {
-    listBooks: []
+    listBooks: [],
+    searchedBooks: [],
+    searchQuery: '',
   };
 
   render() {
-    const { listBooks } = this.state
+    const { listBooks, searchedBooks, searchQuery } = this.state
 
     return (
       <div className="app">
-        <Route path="/search" component={SearchBooks}/>
+        <Route path="/search" component={() => <SearchBooks searchedBooks={searchedBooks} searchQuery={searchQuery}/>}/>
         <Route exact path="/" component={() => <ListBooks listBooks={listBooks}/>}/>
       </div>
     )
