@@ -6,13 +6,8 @@ import BookShelf from './BookShelf'
 class ListBooks extends Component {
   static propTypes = {
     listBooks: PropTypes.array.isRequired,
-    onFetchBooks: PropTypes.func.isRequired,
     onUpdateBook: PropTypes.func.isRequired
   };
-
-  componentDidMount() {
-    this.props.onFetchBooks()
-  }
 
   render() {
     const { listBooks, onUpdateBook } = this.props;
@@ -36,9 +31,21 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf title='Currently Reading' books={currentlyReadingBooks} onUpdateBook={onUpdateBook}/>
-            <BookShelf title='Want to Read' books={wantToReadBooks} onUpdateBook={onUpdateBook}/>
-            <BookShelf title='Read' books={readBooks} onUpdateBook={onUpdateBook}/>
+            <BookShelf
+              title='Currently Reading'
+              books={currentlyReadingBooks}
+              onUpdateBook={onUpdateBook}
+            />
+            <BookShelf
+              title='Want to Read'
+              books={wantToReadBooks}
+              onUpdateBook={onUpdateBook}
+            />
+            <BookShelf
+              title='Read'
+              books={readBooks}
+              onUpdateBook={onUpdateBook}
+            />
           </div>
         </div>
         <div className="open-search">

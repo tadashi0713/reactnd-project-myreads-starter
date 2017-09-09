@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
     searchQuery: '',
   };
 
-  fetchBooks = () => {
+  componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ listBooks: books })
     })
@@ -43,6 +43,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route path="/search" component={() =>
           <SearchBooks
+            listBooks={listBooks}
             searchedBooks={searchedBooks}
             searchQuery={searchQuery}
             onUpdateSearchQuery={this.updateSearchQuery}
@@ -52,7 +53,6 @@ class BooksApp extends React.Component {
         <Route exact path="/" component={() =>
           <ListBooks
             listBooks={listBooks}
-            onFetchBooks={this.fetchBooks}
             onUpdateBook={this.updateBook}
           />
         }/>
