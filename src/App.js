@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import './App.css'
+import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
 
@@ -13,6 +14,12 @@ class BooksApp extends React.Component {
 
   updateSearchQuery = (query) => {
     this.setState({searchQuery: query})
+    if (query !== '') {
+      BooksAPI.search(query, 20).then((results) => {
+        if (typeof results === 'undefined' || results.error) return;
+        this.setState({ searchedBooks: results })
+      })
+    }
   }
 
   render() {

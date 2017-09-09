@@ -11,28 +11,12 @@ class SearchBooks extends Component {
     onUpdateSearchQuery: PropTypes.func.isRequired
   };
 
-  state = {
-    query: '',
-    searchedBooks: []
-  }
-
-  updateQuery = (query) => {
-    this.setState({ query })
-    if (query !== '') {
-      BooksAPI.search(query, 20).then((results) => {
-        if (typeof results === 'undefined' || results.error) return;
-        this.setState({ searchedBooks: results })
-      })
-    }
-  }
-
   updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf)
   }
 
   render() {
-    const { query, searchedBooks } = this.state;
-    const { searchQuery, onUpdateSearchQuery } = this.props
+    const { searchQuery, searchedBooks, onUpdateSearchQuery } = this.props
 
     return (
       <div className="search-books">
