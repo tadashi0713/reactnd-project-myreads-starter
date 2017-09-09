@@ -4,11 +4,22 @@ import PropTypes from 'prop-types'
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
+    listBooks: PropTypes.array,
     onUpdateBook: PropTypes.func.isRequired
   };
 
   render() {
-    const { book, onUpdateBook } = this.props
+    const { book, listBooks, onUpdateBook } = this.props
+
+    let bookShelf = 'none'
+    if (book.shelf) {
+      bookShelf = book.shelf
+    } else if (listBooks) {
+      const matchBook = listBooks.filter((listBook) => {return listBook.id === book.id})[0]
+      if (typeof matchBook !== 'undefined') {
+        bookShelf = matchBook.shelf
+      }
+    }
 
     return (
       <li>
@@ -17,7 +28,7 @@ class Book extends Component {
             <div className="book-cover" style={{ backgroundImage: `url(${book.imageLinks.smallThumbnail})` }} />
             <div className="book-shelf-changer">
               <select
-                value={book.shelf || 'none'}
+                value={bookShelf}
                 onChange={(e) => { onUpdateBook(book, e.target.value) }}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
