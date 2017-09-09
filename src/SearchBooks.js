@@ -28,7 +28,6 @@ class SearchBooks extends Component {
               value={searchQuery}
               onChange={(event) => onUpdateSearchQuery(event.target.value)}
             />
-
           </div>
         </div>
         <div className="search-books-results">

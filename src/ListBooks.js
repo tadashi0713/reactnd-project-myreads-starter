@@ -1,44 +1,31 @@
 import React, { Component } from 'react'
 import { Link } from  'react-router-dom'
 import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
 import BookShelf from './BookShelf'
 
 class ListBooks extends Component {
   static propTypes = {
     listBooks: PropTypes.array.isRequired,
-  };
-
-  state = {
-    books: []
+    onFetchBooks: PropTypes.func.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
-  }
-
-  updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(() => {
-      BooksAPI.getAll().then((books) => {
-        this.setState({ books })
-      })
-    })
+    this.props.onFetchBooks()
   }
 
   render() {
-    const { books } = this.state;
+    const { listBooks, onUpdateBook } = this.props;
 
-    const currentlyReadingBooks = books.filter((book) => {
+    const currentlyReadingBooks = listBooks.filter((book) => {
       return book.shelf === 'currentlyReading'
     });
 
-    const wantToReadBooks = books.filter((book) => {
+    const wantToReadBooks = listBooks.filter((book) => {
       return book.shelf === 'wantToRead'
     });
 
-    const readBooks = books.filter((book) => {
+    const readBooks = listBooks.filter((book) => {
       return book.shelf === 'read'
     });
 
@@ -49,9 +36,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf title='Currently Reading' books={currentlyReadingBooks} onUpdateBook={this.updateBook}/>
-            <BookShelf title='Want to Read' books={wantToReadBooks} onUpdateBook={this.updateBook}/>
-            <BookShelf title='Read' books={readBooks} onUpdateBook={this.updateBook}/>
+            <BookShelf title='Currently Reading' books={currentlyReadingBooks} onUpdateBook={onUpdateBook}/>
+            <BookShelf title='Want to Read' books={wantToReadBooks} onUpdateBook={onUpdateBook}/>
+            <BookShelf title='Read' books={readBooks} onUpdateBook={onUpdateBook}/>
           </div>
         </div>
         <div className="open-search">

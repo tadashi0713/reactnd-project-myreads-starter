@@ -12,6 +12,12 @@ class BooksApp extends React.Component {
     searchQuery: '',
   };
 
+  fetchBooks = () => {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ listBooks: books })
+    })
+  }
+
   updateSearchQuery = (query) => {
     this.setState({searchQuery: query})
     if (query !== '') {
@@ -44,7 +50,11 @@ class BooksApp extends React.Component {
           />
         }/>
         <Route exact path="/" component={() =>
-          <ListBooks listBooks={listBooks}/>
+          <ListBooks
+            listBooks={listBooks}
+            onFetchBooks={this.fetchBooks}
+            onUpdateBook={this.updateBook}
+          />
         }/>
       </div>
     )
