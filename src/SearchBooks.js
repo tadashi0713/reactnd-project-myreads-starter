@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from  'react-router-dom'
 import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
 class SearchBooks extends Component {
   static propTypes = {
     searchedBooks: PropTypes.array.isRequired,
     searchQuery: PropTypes.string.isRequired,
-    onUpdateSearchQuery: PropTypes.func.isRequired
+    onUpdateSearchQuery: PropTypes.func.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
   };
 
-  updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf)
-  }
-
   render() {
-    const { searchQuery, searchedBooks, onUpdateSearchQuery } = this.props
+    const { searchQuery, searchedBooks, onUpdateSearchQuery, onUpdateBook } = this.props
 
     return (
       <div className="search-books">
@@ -38,7 +34,7 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {searchedBooks.map((book) => (
-              <Book book={book} key={book.id} onUpdateBook={this.updateBook}/>
+              <Book book={book} key={book.id} onUpdateBook={onUpdateBook}/>
             ))}
           </ol>
         </div>
