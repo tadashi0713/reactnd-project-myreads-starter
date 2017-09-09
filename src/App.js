@@ -11,13 +11,25 @@ class BooksApp extends React.Component {
     searchQuery: '',
   };
 
+  updateSearchQuery = (query) => {
+    this.setState({searchQuery: query})
+  }
+
   render() {
     const { listBooks, searchedBooks, searchQuery } = this.state
 
     return (
       <div className="app">
-        <Route path="/search" component={() => <SearchBooks searchedBooks={searchedBooks} searchQuery={searchQuery}/>}/>
-        <Route exact path="/" component={() => <ListBooks listBooks={listBooks}/>}/>
+        <Route path="/search" component={() =>
+          <SearchBooks
+            searchedBooks={searchedBooks}
+            searchQuery={searchQuery}
+            onUpdateSearchQuery={this.updateSearchQuery}
+          />
+        }/>
+        <Route exact path="/" component={() =>
+          <ListBooks listBooks={listBooks}/>
+        }/>
       </div>
     )
   }
